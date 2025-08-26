@@ -1,0 +1,4 @@
+administer ai observability views:
+  title: 'Administer AI Observability Views'
+  description: 'Allows users to administer AI Observability Views settings.'
+  restrict access: true

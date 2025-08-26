@@ -1,0 +1,10 @@
+ai_observability_views.admin_settings:
+  title: "AI Observability Views"
+  description: "AI Observability Views and Settings."
+  parent: ai.admin_settings
+  route_name: ai_observability_views.admin_settings
+ai_observability.settings_form:
+  title: "AI Observability Views Settings"
+  description: "Configure AI Observability settings."
+  parent: ai_observability_views.admin_settings
+  route_name: ai_observability.settings_form

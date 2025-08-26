@@ -1,0 +1,12 @@
+name: AI Observability Views
+description: Works with Views and Extended Logger to provide reports around AI Usage
+package: AI
+type: module
+core_version_requirement: ^10.2 || ^11
+tags:
+  - developer
+
+dependencies:
+  - ai:ai
+  - drupal:views
+  - extended_logger:extended_logger
