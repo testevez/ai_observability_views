@@ -712,6 +712,8 @@ display:
             channel: channel
             severity: severity
             message: message
+            value_string_1: value_string_1
+            value_string: value_string
             data: data
           default: time
           info:
@@ -744,6 +746,20 @@ display:
               empty_column: false
               responsive: ''
             message:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            value_string_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            value_string:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -1012,7 +1028,7 @@ display:
           exposed: true
           expose:
             operator_id: value_string_op
-            label: 'Log Value (String)'
+            label: 'IP Number'
             description: ''
             use_operator: true
             operator: value_string_op
