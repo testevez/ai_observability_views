@@ -979,9 +979,6 @@ display:
           plugin_id: extended_logger_db_value_numeric
           operator: '='
           value:
-            min: null
-            max: null
-            value: ''
           group: 1
           exposed: true
           expose:
