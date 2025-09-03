@@ -10,7 +10,7 @@ dependencies:
     module:
       - extended_logger_db
 _core:
-  default_config_hash: A_H_1ISqku1prnNilHkItyVqjR7cLCD9iLBiD0DG9ZI
+  default_config_hash: TFjAII9KP1aj9FZYcwSd0RcG5g3ttADD-T6x2G7dO0g
 id: ai_observability_logs
 label: 'AI Observability Logs'
 module: views
@@ -393,7 +393,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          value_path: metadata.operation_type
+          value_path: metadata.operationType
         data:
           id: data
           table: extended_logger_logs
@@ -923,9 +923,7 @@ display:
           admin_label: ''
           plugin_id: extended_logger_db_channels
           operator: in
-          value:
-            ai: ai
-            ai_observability: ai_observability
+          value: {  }
           group: 1
           exposed: true
           expose:
@@ -1000,38 +998,33 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           value_path: uid
-        value_numeric_1:
-          id: value_numeric_1
+        value_string:
+          id: value_string
           table: extended_logger_logs
-          field: value_numeric
+          field: value_string
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: extended_logger_db_value_numeric
+          plugin_id: extended_logger_db_value_string
           operator: '='
-          value:
-            min: null
-            max: null
-            value: ''
+          value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: value_numeric_1_op
-            label: 'IP Number'
+            operator_id: value_string_op
+            label: 'Log Value (String)'
             description: ''
             use_operator: true
-            operator: value_numeric_1_op
+            operator: value_string_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: value_numeric_ip
+            identifier: value_string_ip
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: 'IP Number (e.g., 172.20.0.5)'
-            min_placeholder: ''
-            max_placeholder: ''
+            placeholder: 'IP Number (e.g., 172.20.0.10)'
           is_grouped: false
           group_info:
             label: ''
@@ -1874,6 +1867,64 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+        value_numeric:
+          id: value_numeric
+          table: extended_logger_logs
+          field: value_numeric
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_value_numeric
+          label: UID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ''
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+          value_path: uid
         data:
           id: data
           table: extended_logger_logs
@@ -2064,7 +2115,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: extended_logger_db_value_string
-          operator: 'not empty'
+          operator: '='
           value: chat
           group: 1
           exposed: false
@@ -2095,7 +2146,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          value_path: metadata.operation_type
+          value_path: metadata.operationType
         channel:
           id: channel
           table: extended_logger_logs
@@ -2105,9 +2156,7 @@ display:
           admin_label: ''
           plugin_id: extended_logger_db_channels
           operator: in
-          value:
-            ai: ai
-            ai_observability: ai_observability
+          value: {  }
           group: 1
           exposed: true
           expose:
