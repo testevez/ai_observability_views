@@ -10,3 +10,4 @@ dependencies:
   - ai:ai
   - drupal:views
   - extended_logger:extended_logger
+  - ai_observability:ai_observability
