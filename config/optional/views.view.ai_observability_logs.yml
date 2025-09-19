@@ -10,7 +10,7 @@ dependencies:
     module:
       - extended_logger_db
 _core:
-  default_config_hash: TFjAII9KP1aj9FZYcwSd0RcG5g3ttADD-T6x2G7dO0g
+  default_config_hash: ZvEg2H57pNUIwOKzIl6ZFFn8aZxXBX6wMjVWXk3PvPo
 id: ai_observability_logs
 label: 'AI Observability Logs'
 module: views
@@ -294,15 +294,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-        value_string_1:
-          id: value_string_1
+        log_value:
+          id: log_value
           table: extended_logger_logs
-          field: value_string
+          field: log_value
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: extended_logger_db_value_string
-          label: Provider
+          plugin_id: extended_logger_db_log_value
+          label: UID
           exclude: false
           alter:
             alter_text: false
@@ -343,16 +343,18 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          value_path: metadata.provider
-        value_string:
-          id: value_string
+          value_path: $.uid
+          value_format: NUMERIC
+          display_format: YAML
+        log_value_1:
+          id: log_value_1
           table: extended_logger_logs
-          field: value_string
+          field: log_value
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: extended_logger_db_value_string
-          label: 'Operation Type'
+          plugin_id: extended_logger_db_log_value
+          label: 'IP #'
           exclude: false
           alter:
             alter_text: false
@@ -393,7 +395,9 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          value_path: metadata.operationType
+          value_path: ip
+          value_format: STRING
+          display_format: YAML
         data:
           id: data
           table: extended_logger_logs
@@ -710,11 +714,13 @@ display:
             id: id
             time: time
             channel: channel
-            severity: severity
             message: message
-            value_string_1: value_string_1
-            value_string: value_string
+            log_value: log_value
             data: data
+            log_value_1: log_value_1
+            log_value_2: log_value_2
+            log_value_3: log_value_3
+            log_value_4: log_value_4
           default: time
           info:
             id:
@@ -738,13 +744,6 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            severity:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             message:
               sortable: true
               default_sort_order: asc
@@ -752,15 +751,8 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            value_string_1:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            value_string:
-              sortable: true
+            log_value:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -768,6 +760,34 @@ display:
               responsive: ''
             data:
               sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            log_value_1:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            log_value_2:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            log_value_3:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            log_value_4:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -969,35 +989,38 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        value_numeric:
-          id: value_numeric
+        log_value_numeric:
+          id: log_value_numeric
           table: extended_logger_logs
-          field: value_numeric
+          field: log_value_numeric
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: extended_logger_db_value_numeric
+          plugin_id: extended_logger_db_log_value_numeric
           operator: '='
           value:
+            min: ''
+            max: ''
+            value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: value_numeric_op
+            operator_id: log_value_numeric_op
             label: UID
             description: ''
             use_operator: true
-            operator: value_numeric_op
+            operator: log_value_numeric_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: value_numeric_uid
+            identifier: log_value_numeric
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: UserID
             min_placeholder: ''
             max_placeholder: ''
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1011,46 +1034,6 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           value_path: uid
-        value_string:
-          id: value_string
-          table: extended_logger_logs
-          field: value_string
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: extended_logger_db_value_string
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: value_string_op
-            label: 'IP Number'
-            description: ''
-            use_operator: true
-            operator: value_string_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: value_string_ip
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: 'IP Number (e.g., 172.20.0.10)'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          value_path: ip
       filter_groups:
         operator: AND
         groups:
@@ -1248,63 +1231,6 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-        severity:
-          id: severity
-          table: extended_logger_logs
-          field: severity
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: numeric
-          label: Severity
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ','
-          format_plural: false
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
         message:
           id: message
           table: extended_logger_logs
@@ -1354,6 +1280,214 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+        log_value_1:
+          id: log_value_1
+          table: extended_logger_logs
+          field: log_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value
+          label: 'Usage: Input'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          value_path: metadata.output.tokenUsage.input
+          value_format: NUMERIC
+          display_format: YAML
+        log_value_2:
+          id: log_value_2
+          table: extended_logger_logs
+          field: log_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value
+          label: 'Usage: Total'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          value_path: metadata.output.tokenUsage.total
+          value_format: NUMERIC
+          display_format: YAML
+        log_value_3:
+          id: log_value_3
+          table: extended_logger_logs
+          field: log_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value
+          label: 'Usage: Cached'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          value_path: metadata.output.tokenUsage.cached
+          value_format: NUMERIC
+          display_format: YAML
+        log_value_4:
+          id: log_value_4
+          table: extended_logger_logs
+          field: log_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value
+          label: 'Usage: Reasoning'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          value_path: metadata.output.tokenUsage.reasoning
+          value_format: NUMERIC
+          display_format: YAML
         data:
           id: data
           table: extended_logger_logs
@@ -1416,48 +1550,6 @@ display:
           missing_value_text: ''
           complex_value_render_style: yaml
       filters:
-        severity:
-          id: severity
-          table: extended_logger_logs
-          field: severity
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: numeric
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: severity_op
-            label: Severity
-            description: ''
-            use_operator: false
-            operator: severity_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: severity
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-            reduce: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         channel:
           id: channel
           table: extended_logger_logs
@@ -1576,6 +1668,46 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        log_value_string:
+          id: log_value_string
+          table: extended_logger_logs
+          field: log_value_string
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value_string
+          operator: '!='
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          value_path: metadata.output.tokenUsage
       filter_groups:
         operator: AND
         groups:
@@ -1880,15 +2012,15 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-        value_numeric:
-          id: value_numeric
+        log_value_1:
+          id: log_value_1
           table: extended_logger_logs
-          field: value_numeric
+          field: log_value
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: extended_logger_db_value_numeric
-          label: UID
+          plugin_id: extended_logger_db_log_value
+          label: 'Operation Type'
           exclude: false
           alter:
             alter_text: false
@@ -1929,15 +2061,61 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          set_precision: false
-          precision: 0
-          decimal: .
-          separator: ''
-          format_plural: false
-          format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
-          value_path: uid
+          value_path: metadata.operationType
+          value_format: STRING
+          display_format: YAML
+        log_value:
+          id: log_value
+          table: extended_logger_logs
+          field: log_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value
+          label: Provider
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          value_path: $.metadata.provider
+          value_format: STRING
+          display_format: YAML
         data:
           id: data
           table: extended_logger_logs
@@ -2120,46 +2298,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        value_string:
-          id: value_string
-          table: extended_logger_logs
-          field: value_string
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: extended_logger_db_value_string
-          operator: '='
-          value: chat
-          group: 1
-          exposed: false
-          expose:
-            operator_id: value_string_op
-            label: 'Log Value (String)'
-            description: ''
-            use_operator: true
-            operator: value_string_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: value_string
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          value_path: metadata.operationType
         channel:
           id: channel
           table: extended_logger_logs
@@ -2199,6 +2337,46 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        log_value_string:
+          id: log_value_string
+          table: extended_logger_logs
+          field: log_value_string
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: extended_logger_db_log_value_string
+          operator: '!='
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          value_path: metadata.provider
       filter_groups:
         operator: AND
         groups:
